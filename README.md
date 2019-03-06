@@ -63,19 +63,39 @@ start = clock()
 soln = greedy1(items, W)
 end = clock()
 g1times.add(end-start)
-g1err.add((optimal - soln)/optimal)
+g1err.add(soln/optimal)
 
 start = clock()
 soln = greedy1(items, W)
 end = clock()
 g2times.add(end-start)
-g2err.add((optimal - soln)/optimal)
+g2err.add(soln/optimal)
 ```
 
 This is only one iteration; you should iterate multiple times (you choose the number of iterations, but it should run multiple times).  You can then average the runtime lists and the error lists to get your average runtimes and qualities.
 
-Sample expected output will be provided in class.
+### Sample IO
+```bash
+$ python3 knapsack.py 50 200
+Parameters:
+-- ITERS: 100
+-- NUM ITEMS: 50
+-- BAG MAX WEIGHT: 200
+-- MAX ITEM WEIGHT: 200
+-- MAX VALUE: 100
+
+Algorithms: DP, Increasing weight, Decreasing wt/val
+
+Results:
+Time (DP): 0.0019124223696417176
+Time (Greedy 1): 8.813849126454442e-06
+Time (Greedy 2): 9.25262167584151e-06
+Quality (Greedy 1): 0.8418419025470252
+Quality Time (Greedy 2): 0.987260762885207
+```
+
+You may also output a table if you want; when you write your report you will be varying either the number of items or the maximum bag weight.  You can make that decision early on and output the same kind of table you did for project 1.  You should print two tables if you take this option: Time and Quality (for either n vs algorithm or W vs algorithm).
 
 ### Deliverables
 
-You must submit code that implements the dynamic programming and greedy heuristic approaches to solving this problem, generates random lists of items, and outputs the average timings for a given n (number of items) and W (maximum weight)
+You must submit code that implements the dynamic programming and greedy heuristic approaches to solving this problem, generates random lists of items, and outputs the average timings for a given n (number of items) and W (maximum weight).  You are not to submit a `.zip` file in your git repository (all source code must be visible directly in the repository).  Additionally if you are working with a partner both group members must show contribution through commits to the repository.
