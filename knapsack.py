@@ -10,10 +10,10 @@ class Item:
 def knapsack_dynamic():
     pass
 
-def knapsack_decreasing_value():
+def knapsack_greedy_decreasing_value():
     pass
 
-def knapsack_increasing_weight():
+def knapsack_greedy_increasing_weight():
     pass
 
 
