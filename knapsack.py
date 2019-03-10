@@ -18,10 +18,7 @@ def knapsack_dynamic(items, maximum_weight):
     for r in range(n):
         print(str(r))
 
-    #knapsack_table = [[None for x in range(maximum_weight+1)] for y in range(n)]
-    knapsack_row = [None] * (maximum_weight+1)
-    knapsack_table = [knapsack_row] * n
-    #knapsack_table = [[None]*maximum_weight+1]*maximum_weight
+    knapsack_table = [[0 for i in range(maximum_weight + 1)] for y in range(n)]
 
     print(str(len(knapsack_table)))
     for i in range(n):
