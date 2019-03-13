@@ -94,6 +94,16 @@ def generate_items(count, wt, vl):
 
     return itemlist
 
+# Printing parameters
+def print_parameters(tCount, iCount, max_wt, wt_range, vl_range):
+    print("Timing Parameters:")
+    print("--- Trial Count:\t", tCount)
+    print("--- Item Count:\t\t", iCount)
+    print("--- Max Weight:\t\t", max_wt)
+    print("--- Weight Range:\t {} - {}".format(wt_range[0], wt_range[1]))
+    print("--- Value Range:\t {} - {}".format(vl_range[0], vl_range[0]))
+    print()
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("itemCount", type=int,
@@ -102,12 +112,18 @@ if __name__ == '__main__':
             help="Maximum weight that can be held in the bag")
     args = parser.parse_args()
 
-    items = generate_items(args.itemCount, (1, 10), (1, 25))
-
-    #items = [Item(2, 3), Item(3, 5), Item(8, 16)]
     maxWeight = args.maxWeight
+    itemCount = args.itemCount
+    trials = 100
+    # Parameters of item generation weight and value
+    itemgen_wt = (1, 10)
+    itemgen_vl = (1, 25)
+
+    print_parameters(trials, itemCount, maxWeight, itemgen_wt, itemgen_vl)
+
+    items = generate_items(itemCount, itemgen_wt, itemgen_vl)
+
     dynamic = knapsack_dynamic(items, maxWeight)
-    print(items)
     weight = knapsack_greedy_weight(items, maxWeight)
     value = knapsack_greedy_value(items, maxWeight)
     ratio = knapsack_greedy_ratio(items, maxWeight)
