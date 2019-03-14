@@ -7,7 +7,7 @@ Please refer to the [Linux/Unix/BSD](https://docs.python.org/3/using/unix.html#g
 
 ## Arguments
 `python3 knapsack.py -h` for help on arguments.
-Usage: `knapsack.py [-h] itemCount maxWeight`
+Usage: `python3 knapsack.py [-h] itemCount maxWeight`
 - itemCount :: Amount of available items to put into the bag
 - maxWeight :: Maximum weight that can be held in the bag
 

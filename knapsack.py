@@ -59,7 +59,7 @@ def knapsack_greedy_weight(items, max_wt, decreasing=False):
     return knapsack_greedy_grab(items_sorted, max_wt)
 
 # Sup y'all it's Greedy Greedman coming at cha, once again we have another
-# night stream. Unfortunately our last stream had to be caught short due
+# night stream. Unfortunately our last stream had to be cut short due
 # to a run in with the cops, but after 3 weeks on probation I'm out here
 # with another one.
 def knapsack_greedy_value(items, max_wt):
