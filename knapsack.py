@@ -155,7 +155,7 @@ if __name__ == '__main__':
     print("Greedy ratio answer:", ratio)
     '''
     # Output results
-    print("Algorithms tested: DP, Increasing Weight, Decreasing Value, and Decreasing Ratio (value/weight)\n\nAll times are recorded and show in nanoseconds.\n")
+    print("Algorithms tested: DP, Increasing Weight, Decreasing Value, and Decreasing Ratio (value/weight)\n\nAll times are recorded and shown in nanoseconds.\n")
     print("Recorded Data:")
     print("Runtime (DP):", sum(dptimes)/len(dptimes))
     for i in range(3):
