@@ -161,4 +161,4 @@ if __name__ == '__main__':
     for i in range(3):
         print("-----------------------")
         print(f"Runtime  (Greedy {i+1}: {sum(times[i])/len(times[i])})")
-        print(f"Accuracy (Greedy {i+1}: {sum(errs[i])/len(errs[i])*100}%)")
+        print(f"Accuracy (Greedy {i+1}: {sum(errs[i])/len(errs[i])*100:.4f}%)")
