@@ -100,8 +100,8 @@ def print_parameters(tCount, iCount, max_wt, wt_range, vl_range):
     print("--- Trial Count:\t", tCount)
     print("--- Item Count:\t\t", iCount)
     print("--- Max Weight:\t\t", max_wt)
-    print("--- Weight Range:\t {} - {}".format(wt_range[0], wt_range[1]))
-    print("--- Value Range:\t {} - {}".format(vl_range[0], vl_range[0]))
+    print(f"--- Weight Range:\t {wt_range[0]} - {wt_range[1]}")
+    print(f"--- Value Range:\t {vl_range[0]} - {vl_range[1]}")
     print()
 
 if __name__ == '__main__':
@@ -121,8 +121,29 @@ if __name__ == '__main__':
 
     print_parameters(trials, itemCount, maxWeight, itemgen_wt, itemgen_vl)
 
-    items = generate_items(itemCount, itemgen_wt, itemgen_vl)
+    dptimes, gwtimes, gvtimes, grtimes, gwerr, gverr, grerr = (
+        [] for i in range(7))
 
+    times = (gwtimes, gvtimes, grtimes)
+    errs  = (gwerr, gverr, grerr)
+    greed = (knapsack_greedy_weight,
+             knapsack_greedy_value,
+             knapsack_greedy_ratio)
+
+    # N E X T 👏 A L G O 👏
+    for i in range(trials):
+        items = generate_items(itemCount, itemgen_wt, itemgen_vl)
+
+        start = time.perf_counter_ns() # The perfect counter.
+        optimal = knapsack_dynamic(items, maxWeight)
+        dptimes.append(time.perf_counter_ns()-start)
+
+        for j in range(3):
+            start = time.perf_counter_ns()
+            greed_out = greed[j](items, maxWeight)
+            times[j].append(time.perf_counter_ns() - start)
+            errs[j].append(greed_out / optimal)
+    '''
     dynamic = knapsack_dynamic(items, maxWeight)
     weight = knapsack_greedy_weight(items, maxWeight)
     value = knapsack_greedy_value(items, maxWeight)
@@ -132,3 +153,12 @@ if __name__ == '__main__':
     print("Greedy weight answer:", weight)
     print("Greedy value answer:", value)
     print("Greedy ratio answer:", ratio)
+    '''
+    # Output results
+    print("Algorithms tested: DP, Increasing Weight, Decreasing Value, and Decreasing Ratio (value/weight)\n\nAll times are recorded and show in nanoseconds.\n")
+    print("Recorded Data:")
+    print("Runtime (DP):", sum(dptimes)/len(dptimes))
+    for i in range(3):
+        print("-----------------------")
+        print(f"Runtime  (Greedy {i+1}: {sum(times[i])/len(times[i])})")
+        print(f"Accuracy (Greedy {i+1}: {sum(errs[i])/len(errs[i])*100}%)")
