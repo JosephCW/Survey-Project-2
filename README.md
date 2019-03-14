@@ -1,3 +1,16 @@
+# Installing and Running the Project
+
+## Python Requirements
+Please refer to the [Linux/Unix/BSD](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python) or the [Windows](https://docs.python.org/3/using/windows.html) python installation manual to install python.
+
+**IMPORTANT** This version of the code only work on Python 3.7+ due to requirements for [time.perf_counter_ns()](https://docs.python.org/3/library/time.html#time.perf_counter_ns). If you're running Python 3.3+ and cannot upgrade, please replace all instances of `time.perf_counter_ns()` with `time.perf_counter()`. This action will also change all the timing to be recorded in seconds rather than nanoseconds.
+
+## Arguments
+`python3 knapsack.py -h` for help on arguments.
+Usage: `knapsack.py [-h] itemCount maxWeight`
+- itemCount :: Amount of available items to put into the bag
+- maxWeight :: Maximum weight that can be held in the bag
+
 # Project 02
 
 ## 44-349 Survey of Algorithms
