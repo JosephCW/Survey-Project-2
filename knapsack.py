@@ -155,10 +155,12 @@ if __name__ == '__main__':
     print("Greedy ratio answer:", ratio)
     '''
     # Output results
-    print("Algorithms tested: DP, Increasing Weight, Decreasing Value, and Decreasing Ratio (value/weight)\n\nAll times are recorded and shown in nanoseconds.\n")
+    print("Algorithms tested: DP, Increasing Weight, Decreasing Value, and Decreasing Ratio (value/weight)\n\nAll times are recorded and shown in nanoseconds.\nSorting times are included within runtime.\n")
+    algos = ["Increasing Weight", "Decreasing Value", "Decreasing Ratio (value/weight)"]
     print("Recorded Data:")
     print("Runtime (DP):", sum(dptimes)/len(dptimes))
     for i in range(3):
         print("-----------------------")
-        print(f"Runtime  (Greedy {i+1}: {sum(times[i])/len(times[i])})")
-        print(f"Accuracy (Greedy {i+1}: {sum(errs[i])/len(errs[i])*100:.4f}%)")
+        print(f"Showing Data for {algos[i]}")
+        print(f"Runtime  (Greedy): {sum(times[i])/len(times[i])})")
+        print(f"Accuracy (Greedy): {sum(errs[i])/len(errs[i])*100:.4f}%)")
