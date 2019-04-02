@@ -54,7 +54,9 @@ ax2.xaxis.tick_bottom()
 
 # axis(xmin, xmax, ymin, ymax)
 #plt.axis([100, 500, 0, 500000])
-plt.ylabel('Average Time Taken in Microseconds') 
+
+f.text(0.02, 0.5, 'Average Time Taken in Microseconds', ha='center', va='center', rotation='vertical')
+
 plt.xlabel('Maximum Weight')
 ax.set_title('Time to Calculate Items to take with Maximum Available Weight (N)') 
 #plt.show()
