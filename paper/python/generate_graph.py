@@ -59,3 +59,22 @@ plt.xlabel('Maximum Weight')
 ax.set_title('Time to Calculate Items to take with Maximum Available Weight (N)') 
 #plt.show()
 plt.savefig('timeGraph.png')
+plt.close()
+
+# Now to make a new line graph
+line_dynamic_accuracy = plt.plot(max_weights, dynamic_accuracy, label="Dynamic", linewidth=4)
+line_increasing_weight_accuracy = plt.plot(max_weights, increasing_weight_accuracy, label="Increasing Weight", linewidth=2)
+line_decreasing_value_accuracy = plt.plot(max_weights, decreasing_value_accuracy, label="Decreasing Value", linewidth=2)
+line_decreasing_ratio_accuracy = plt.plot(max_weights, decreasing_ratio_accuracy, label="Decreasing Ratio", linewidth=2)
+
+
+plt.legend(handles=[line_dynamic_accuracy[0], line_increasing_weight_accuracy[0], line_decreasing_value_accuracy[0], line_decreasing_ratio_accuracy[0]])
+
+
+plt.axis([100,500,70,100])
+plt.ylabel("Accuracy against Maximum Solution (%)")
+plt.xlabel("Maximum Weight")
+plt.title("Algorithm Accuracy for Taking Items Given Maximum Weight (N)")
+plt.savefig('accuracyGraph.png')
+
+
