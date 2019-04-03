@@ -29,7 +29,9 @@ This is known as load balancing and is used in many common day-to-day technologi
 \section{Greedy Algorithm}
 
 \section{Dynamic Algorithm}
-
+This dynamic programming solution builds a table of size $n$x$W+1$ where $n$ is the number of available items, and $W$ is the maximum weight that is available. For each row (i) and each column (j) set that row's first column equal to zero. if j is less than the first item in the item list's weight then set the first row's column at j equal to the value of the first item in the item's list.
+Now that the first row and column have been populated, the remaining elements can also be calculated.
+If j is less than the current item's weight, then the current row and column's value is set to the value held at the the previous row and the current column. Otherwise the value found at the current row and column is set as the maximum between the value at the previous row and current column and the value found at the prevoius row and current column minus the current items weight. This is in addition to the current items value. The optimal value can now be read at K[$n-1$][$W$]
 \section{Experimental Setup}
 
 \section{Results}
