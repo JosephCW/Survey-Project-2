@@ -48,6 +48,7 @@ This is known as load balancing and is used in many common day-to-day technologi
     \If{maxWeight $=$ 0}
     \Return total
     \EndIf
+    \EndFor
     \Return total
     \EndFunction
   \end{algorithmic}
@@ -55,6 +56,26 @@ This is known as load balancing and is used in many common day-to-day technologi
 
 
 \section{Dynamic Algorithm}
+\begin{algorithm}
+	\begin{algorithmic}
+		\caption{DynAlgo}\label{DynAlgo}
+		\Function{DynAlgo}{items, maxWeight}
+		\State n $\gets$ len(items)
+		\For{i in range(n)}
+			\For{j in range(maxWeight + 1)}
+				\State table[i][0] $\gets$ 0
+				\If{j $<$ items[0].weight}
+					\State table[0][j] $\gets$ 0
+				\EndIf
+				\If{j $\geq$ items[0].weight}
+					\State table[i][j] $\gets$ max(table[i-1][j], table[i-1][j-items[i].weight] + items[i].value)
+				\EndIf
+			\EndFor
+		\EndFor
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
 This dynamic programming solution builds a table of size $n$ by $W+1$ where $n$ is the number of available items, and $W$ is the maximum weight that is available. For each row, $i$, and each column, $j$,  set that row's first column equal to zero. If $j$ is less than the first item in the item list's weight then set the first row's column at $j$ equal to the value of the first item in the item's list.
 Now that the first row and column have been populated, the remaining elements can also be calculated.
 If $j$ is less than the current item's weight, then the current row and column's value is set to the value held at the the previous row and the current column. Otherwise the value found at the current row and column is set as the maximum between the value at the previous row and current column and the value found at the prevoius row and current column minus the current items weight. This is in addition to the current items value. The optimal value can now be read at K[$n-1$][$W$]
