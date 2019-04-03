@@ -81,6 +81,9 @@ This dynamic programming solution builds a table of size $n$ by $W+1$ where $n$ 
 Now that the first row and column have been populated, the remaining elements can also be calculated.
 If $j$ is less than the current item's weight, then the current row and column's value is set to the value held at the the previous row and the current column. Otherwise the value found at the current row and column is set as the maximum between the value at the previous row and current column and the value found at the prevoius row and current column minus the current items weight. This is in addition to the current items value. The optimal value can now be read at K[$n-1$][$W$]
 
+
+\medskip
+While at first glance it may appear that this algorithm will run in $\theta(n^2)$ time, it actually depends on both the number of items that are available, and the maximum weight allowed, which changes the number of items that you get to choose from. This leads this dynamic algorithm to have $\theta(n * W)$ complexity where $n$ is the number of available items and $W$ is the maximum weight.
 \section{Experimental Setup}
 
 
