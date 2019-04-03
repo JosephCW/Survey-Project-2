@@ -17,7 +17,10 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-  Abstract here.
+	0-1 Knapsack is the coined phrase which is used to simply describe the problem of finding the maximum value possible by choosing what items to take, when not everything can be taken.
+ Put slightly more formally, given a set of items with all items having a value and weight assigned to them and a bag which allows the user to carry unlimited volume but only a limited weight, the goal is to find the set of items which allow the user to get the maximum value from the chosen items.
+This paper explores different approaches to solving this problem including both a Dynamic Programming approach along with multiple different Greedy approaches.
+
 \end{abstract}
 
 \section{Background and Related Work}
@@ -76,13 +79,30 @@ The focus of the greedy algorithm is based around 2 simple concepts. Sort the it
 \end{algorithm}
 
 \section{Dynamic Algorithm}
-
+This dynamic programming solution builds a table of size $n$ by $W+1$ where $n$ is the number of available items, and $W$ is the maximum weight that is available. For each row, $i$, and each column, $j$,  set that row's first column equal to zero. If $j$ is less than the first item in the item list's weight then set the first row's column at $j$ equal to the value of the first item in the item's list.
+Now that the first row and column have been populated, the remaining elements can also be calculated.
+If $j$ is less than the current item's weight, then the current row and column's value is set to the value held at the the previous row and the current column. Otherwise the value found at the current row and column is set as the maximum between the value at the previous row and current column and the value found at the prevoius row and current column minus the current items weight. This is in addition to the current items value. The optimal value can now be read at K[$n-1$][$W$]
 
 \section{Experimental Setup}
 
 
 \section{Results}
-
+	% Diagram showing the average time between different approaches
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width=0.70\textwidth]{python/accuracyGraph.png}
+			\caption{Algorithm Accuracy for Taking Items Given Maximum Weight $n$}
+			\label{fig:accuracy-graph}
+		\end{center}
+	\end{figure}
+	% Diagram showing the % accuracy of different approaches
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width=0.70\textwidth]{python/timeGraph.png}
+			\caption{Time to Calculate Items to take with Maximum Available Weight $n$}
+			\label{fig:time-graph}
+		\end{center}
+	\end{figure}
 
 \section{Conclusions}
 
