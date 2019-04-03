@@ -1,0 +1,61 @@
+\documentclass[10pt, letterpaper]{article}
+\usepackage[cm]{fullpage}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage[margin=0.7in]{geometry}
+
+\algrenewcommand\Return{\State \algorithmicreturn{} }%
+
+\title{0-1 Knapsack}
+\author{Daiwei Chen \and Joseph Watts}
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  Abstract here.
+\end{abstract}
+
+\section{Background and Related Work}
+In the year 2000, the Y2K bug destroyed all computer software worldwide. Millions of computer scientists lost their jobs in the catastrophy. Many of these computer scientists turned towards becoming a thief as the alternative occupation. Somehow, many of these computer scientists got themselves a very, very large bag. An bag of infinite size if you will. Unfortunately, due to long days of sitting still, many of these computer scientists can only carry so much. Thus comes the question, how do you determine which items to steal at an efficient manner to obtain the most value for the amount of weight you can carry. And what's the best way to figure out a solution (fastest solution vs. best solution, or both)?\\
+\\
+The Knapsack problem relates very closely to anything that requires resource allocation. In many problems, one of the largest constraits is resources, be it time, money, or talent. To be more efficient, it's important for anyone to use the resources they have to achieve the greatest result possible.
+
+\section{Greedy Algorithm}
+
+\begin{algorithm}
+  \begin{algorithmic}
+    \caption{GreedyGrab}\label{GreedyGrab}
+    \Function{GreedyGrab}{items, maxWeight}
+    \State total $\gets$ 0
+    \For{item in items}
+    \If{item.weight $\leq$ maxWeight}
+    \State maxWeight $\gets$ maxWeight - item.weight
+    \State total $\gets$ total + item.value
+    \EndIf
+    \If{maxWeight $=$ 0}
+    \Return total
+    \EndIf
+    \Return total
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+
+
+\section{Dynamic Algorithm}
+
+
+\section{Experimental Setup}
+
+
+\section{Results}
+
+
+\section{Conclusions}
+
+
+\end{document}
