@@ -18,9 +18,9 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-	0-1 Knapsack is the coined phrase which is used to simply describe the problem of finding the maximum value possible by choosing what items to take, when not everything can be taken.
- Put slightly more formally, given a set of items with all items having a value and weight assigned to them and a bag which allows the user to carry unlimited volume but only a limited weight, the goal is to find the set of items which allow the user to get the maximum value from the chosen items.
-This paper explores different approaches to solving this problem including both a Dynamic Programming approach along with multiple different Greedy approaches.
+  0-1 Knapsack is the coined phrase which is used to simply describe the problem of finding the maximum value possible by choosing what items to take, when not everything can be taken.
+  Put slightly more formally, given a set of items with all items having a value and weight assigned to them and a bag which allows the user to carry unlimited volume but only a limited weight, the goal is to find the set of items which allow the user to get the maximum value from the chosen items.
+  This paper explores different approaches to solving this problem including both a Dynamic Programming approach along with multiple different Greedy approaches.
 
 \end{abstract}
 
@@ -28,8 +28,8 @@ This paper explores different approaches to solving this problem including both 
 In the year 2000, the Y2K bug destroyed all computer software worldwide. Millions of computer scientists lost their jobs in the catastrophy. Many of these computer scientists turned towards becoming a thief as the alternative occupation. Somehow, many of these computer scientists got themselves a very, very large bag. An bag of infinite size if you will. Unfortunately, due to long days of sitting still, many of these computer scientists can only carry so much. Thus comes the question, how do you determine which items to steal at an efficient manner to obtain the most value for the amount of weight you can carry. And what's the best way to figure out a solution (fastest solution vs. best solution, or both)?\\
 \\
 \begin{comment}
-The Knapsack problem relates very closely to anything that requires resource allocation. In many problems, one of the largest constraits is resources, be it time, money, or talent. To be more efficient, it's important for anyone to use the resources they have to achieve the greatest result possible.\\
-\\
+  The Knapsack problem relates very closely to anything that requires resource allocation. In many problems, one of the largest constraits is resources, be it time, money, or talent. To be more efficient, it's important for anyone to use the resources they have to achieve the greatest result possible.\\
+  \\
 \end{comment}
 The 0-1 Knapsack problem is commonly found in project management and economics in dealing with resource allocation. In an oversimplified manner, how can resources divided so that different departments can get the most valuable work done given their needed resources.
 0-1 Knapsack also shows up when working with networking equiptment which try to most efficiently distribute load between different stations.
@@ -59,64 +59,70 @@ This is known as load balancing and is used in many common day-to-day technologi
 
 The focus of the greedy algorithm is based around 2 simple concepts. Sort the items in a reasonable way. And then proceed to fill up the bag with as many items as possible as long as it does not go over your weight limit. In this implementation of the greedy algorithm, the GreedyGrab function will be used after the different types of sorting.
 
-\begin{algorithm}[!htpf]
-  \begin{algorithmic}
-    \caption{GreedyValue}\label{GreedyValue}
-    \Function{GreedyValue}{items, maxWeight}
-    \State sortedItems $\gets$ \Call{sorted}{items,key=item.value,order=Decreasing}
-    \Return \Call{GreedyGrab}{sortedItems, maxWeight}
-    \EndFunction
-  \end{algorithmic}
-\end{algorithm}
+\begin{comment}
+  \begin{algorithm}[!htpf]
+    \begin{algorithmic}
+      \caption{GreedyValue}\label{GreedyValue}
+      \Function{GreedyValue}{items, maxWeight}
+      \State sortedItems $\gets$ \Call{sorted}{items,key=item.value,order=Decreasing}
+      \Return \Call{GreedyGrab}{sortedItems, maxWeight}
+      \EndFunction
+    \end{algorithmic}
+  \end{algorithm}
+\end{comment}
 
 In the GreedyValue algorithm, items are sorted in decreasing value. Then, the GreedyGrab program will place items into the bag starting with the most expensive one.
 
-\begin{algorithm}[!htpf]
-  \begin{algorithmic}
-    \caption{GreedyWeight}\label{GreedyWeight}
-    \Function{GreedyWeight}{items, maxWeight}
-    \State sortedItems $\gets$ \Call{sorted}{items,key=item.weight,order=Increasing}
-    \Return \Call{GreedyGrab}{sortedItems, maxWeight}
-    \EndFunction
-  \end{algorithmic}
-\end{algorithm}
+\begin{comment}
+  \begin{algorithm}[!htpf]
+    \begin{algorithmic}
+      \caption{GreedyWeight}\label{GreedyWeight}
+      \Function{GreedyWeight}{items, maxWeight}
+      \State sortedItems $\gets$ \Call{sorted}{items,key=item.weight,order=Increasing}
+      \Return \Call{GreedyGrab}{sortedItems, maxWeight}
+      \EndFunction
+    \end{algorithmic}
+  \end{algorithm}
+\end{comment}
 
 In the GreedyWeight algorithm, items are sorted in Increasing weight. Which means the lightest items are grabbed first, to entire grabbing of the maximum amount of items.
 
-\begin{algorithm}[!htpf]
-  \begin{algorithmic}
-    \caption{GreedyRatio}\label{GreedyRatio}
-    \Function{GreedyWV}{items, maxWeight}
-    \State sortedItems $\gets$ \Call{sorted}{items,key=item.value/item.weight,order=Decreasing}
-    \Return \Call{GreedyGrab}{sortedItems, maxWeight}
-    \EndFunction
-  \end{algorithmic}
-\end{algorithm}
+\begin{comment}
+  \begin{algorithm}[!htpf]
+    \begin{algorithmic}
+      \caption{GreedyRatio}\label{GreedyRatio}
+      \Function{GreedyWV}{items, maxWeight}
+      \State sortedItems $\gets$ \Call{sorted}{items,key=item.value/item.weight,order=Decreasing}
+      \Return \Call{GreedyGrab}{sortedItems, maxWeight}
+      \EndFunction
+    \end{algorithmic}
+  \end{algorithm}
+\end{comment}
 
-In the GreedyWV algorithm, items are sorted by a ratio of value / weight. This ratio allows us to grab the items with the most value to how heavy it weighs.
+In the GreedyRatio algorithm, items are sorted by a ratio of value / weight. This ratio allows us to grab the items with the most value to how heavy it weighs.
 
 Since this experiment was done in Python. The sorting portion uses Timsort and is $O(n \log n)$ and the grabbing after is $O(n)$.
 
 \section{Dynamic Algorithm}
 \begin{algorithm}[!htpf]
-	\begin{algorithmic}
-		\caption{DynAlgo}\label{DynAlgo}
-		\Function{DynAlgo}{items, maxWeight}
-		\State n $\gets$ len(items)
-		\For{i in range(n)}
-			\For{j in range(maxWeight + 1)}
-				\State table[i][0] $\gets$ 0
-				\If{j $<$ items[0].weight}
-					\State table[0][j] $\gets$ 0
-				\EndIf
-				\If{j $\geq$ items[0].weight}
-					\State table[i][j] $\gets$ max(table[i-1][j], table[i-1][j-items[i].weight] + items[i].value)
-				\EndIf
-			\EndFor
-		\EndFor
-		\Return table[n-1][maxWeight]
-		\EndFunction
-	\end{algorithmic}
+  \begin{algorithmic}
+    \caption{DynAlgo}\label{DynAlgo}
+    \Function{DynAlgo}{items, maxWeight}
+    \State n $\gets$ len(items)
+    \For{i in range(n)}
+    \For{j in range(maxWeight + 1)}
+    \State table[i][0] $\gets$ 0
+    \If{j $<$ items[0].weight}
+    \State table[0][j] $\gets$ 0
+    \EndIf
+    \If{j $\geq$ items[0].weight}
+    \State table[i][j] $\gets$ max(table[i-1][j], table[i-1][j-items[i].weight] + items[i].value)
+    \EndIf
+    \EndFor
+    \EndFor
+    \Return table[n-1][maxWeight]
+    \EndFunction
+  \end{algorithmic}
 \end{algorithm}
 
 This dynamic programming solution builds a table of size $n$ by $W+1$ where $n$ is the number of available items, and $W$ is the maximum weight that is available. For each row, $i$, and each column, $j$,  set that row's first column equal to zero. If $j$ is less than the first item in the item list's weight then set the first row's column at $j$ equal to the value of the first item in the item's list.
@@ -130,22 +136,22 @@ While at first glance it may appear that this algorithm will run in $\theta(n^2)
 This experiment was setup to run 100 trials of calculations. 100 items with a value between 1 and 25 were generated all having a weight between 1 and 10. Between each run of the experiment the maximum weight was increased by 100, up to 500. Timings were done for the Dynamic Algorithm and three Greedy approaches: increasing weight, decreasing value, and decreasing ratio (value/weight). Sorting for the three greedy approaches were included in the timing of these algorithms. Accuracy for these were also compared to dynamic programming and calculated as a \% of the optimal answer. All times were recorded in nanoseconds with Python on an Intel i5-2520m with 16gb of ddr3 memory running Ubuntu 18.10 as its operating system. 5.0.1-050001-generic was the kernel of choice.
 
 \section{Results}
-	% Diagram showing the average time between different approaches
-	\begin{figure}[htbp]
-		\begin{center}
-			\includegraphics[width=0.70\textwidth]{python/accuracyGraph.png}
-			\caption{Algorithm Accuracy for Taking Items Given Maximum Weight $n$}
-			\label{fig:accuracy-graph}
-		\end{center}
-	\end{figure}
-	% Diagram showing the % accuracy of different approaches
-	\begin{figure}[htbp]
-		\begin{center}
-			\includegraphics[width=0.70\textwidth]{python/timeGraph.png}
-			\caption{Time to Calculate Items to take with Maximum Available Weight $n$}
-			\label{fig:time-graph}
-		\end{center}
-	\end{figure}
+% Diagram showing the average time between different approaches
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.70\textwidth]{python/accuracyGraph.png}
+    \caption{Algorithm Accuracy for Taking Items Given Maximum Weight $n$}
+    \label{fig:accuracy-graph}
+  \end{center}
+\end{figure}
+% Diagram showing the % accuracy of different approaches
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.70\textwidth]{python/timeGraph.png}
+    \caption{Time to Calculate Items to take with Maximum Available Weight $n$}
+    \label{fig:time-graph}
+  \end{center}
+\end{figure}
 
 \section{Conclusions}
 First, let's talk about accuracy. Using the Dynamic solution as the base, as it is always the optimal answer. Consistantly, the ratio greedy algorithm is always around the $99\%$ range. As compared to the other two greedy algorithms, which are both very lackluster. In terms of the speed and timing. All 3 greedy algorithms performed equally well. The Dynamic solution was thousands of times slower than the greedy solutions.\\
