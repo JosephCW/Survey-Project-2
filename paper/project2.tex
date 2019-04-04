@@ -38,7 +38,7 @@ This is known as load balancing and is used in many common day-to-day technologi
 
 \section{Greedy Algorithm}
 
-\begin{algorithm}[!htpf]
+\begin{algorithm}[!htp]
   \begin{algorithmic}
     \caption{GreedyGrab}\label{GreedyGrab}
     \Function{GreedyGrab}{items, maxWeight}
@@ -104,7 +104,7 @@ In the GreedyRatio algorithm, items are sorted by a ratio of value / weight. Thi
 Since this experiment was done in Python. The sorting portion uses Timsort and is $O(n \log n)$ and the grabbing after is $O(n)$.
 
 \section{Dynamic Algorithm}
-\begin{algorithm}[!htpf]
+\begin{algorithm}[!htp]
   \begin{algorithmic}
     \caption{DynAlgo}\label{DynAlgo}
     \Function{DynAlgo}{items, maxWeight}
@@ -136,21 +136,21 @@ While at first glance it may appear that this algorithm will run in $\theta(n^2)
 This experiment was setup to run 100 trials of calculations. 100 items with a value between 1 and 25 were generated all having a weight between 1 and 10. Between each run of the experiment the maximum weight was increased by 100, up to 500. Timings were done for the Dynamic Algorithm and three Greedy approaches: increasing weight, decreasing value, and decreasing ratio (value/weight). Sorting for the three greedy approaches were included in the timing of these algorithms. Accuracy for these were also compared to dynamic programming and calculated as a \% of the optimal answer. All times were recorded in nanoseconds with Python on an Intel i5-2520m with 16gb of ddr3 memory running Ubuntu 18.10 as its operating system. 5.0.1-050001-generic was the kernel of choice.
 
 \section{Results}
-% Diagram showing the average time between different approaches
-\begin{figure}[htbp]
-  \begin{center}
-    \includegraphics[width=0.70\textwidth]{python/accuracyGraph.png}
-    \caption{Algorithm Accuracy for Taking Items Given Maximum Weight $n$}
-    \label{fig:accuracy-graph}
-  \end{center}
-\end{figure}
-% Diagram showing the % accuracy of different approaches
-\begin{figure}[htbp]
-  \begin{center}
-    \includegraphics[width=0.70\textwidth]{python/timeGraph.png}
-    \caption{Time to Calculate Items to take with Maximum Available Weight $n$}
-    \label{fig:time-graph}
-  \end{center}
+
+
+\begin{figure}[!tbp]
+	\centering
+	\begin{minipage}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{python/accuracyGraph.png}
+		\caption{Algorithm Accuracy for Taking Items Given Maximum Weight $n$}
+		\label{fig:accuracy-graph}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{python/timeGraph.png}
+		\caption{Time to Take Items Given Maximum Weight $n$}
+		\label{fig:time-graph}
+	\end{minipage}
 \end{figure}
 
 \section{Conclusions}
